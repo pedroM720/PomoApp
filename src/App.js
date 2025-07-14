@@ -1,44 +1,47 @@
 import './App.css';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import TimeRemainingTimer from './components/TimeRemainingTimer';
+import ContentArea from './components/ContentArea';
+import BackgroundChooser from './components/BackgroundChooser';
+import BackgroundPreview from './components/BackgroundPreview';
+import PresetSelector from './components/PresetSelector';
+import TimeSetter from './components/TimeSetter';
+
+
 
 function App() {
   return (
-      <div className="timer-container">
-        {/* Sidebar*/}
-        <div className='sidebar'>
-          <h1>Study Timer</h1>
+    <div className="app-container">
+      {/* left side */}
+      <aside className="sidebar">
+        <Header title="Pomodoro" />
+        <div className="box">
           <h2>Choose Background:</h2>
-          <button className="circle">Beach</button>
-          <button className="circle">Library</button>
-
-          <div className='time-set-box'>
-            <p>Set Time:</p>
-            <button>+</button>
-            <span>25:00</span>
-            <button>−</button>
-          </div>
         </div>
-
-        <div className='background-area'>
-          <div className='presets'>
-             <p>Choose Preset:</p>
-            <button>25-5</button>
-            <button>45-5</button>
-            <button>60-10</button>
-          </div>
-
-          <div className='timer-display'>
-            <p>Timer with animated clock</p>
-            {/* timer go here*/}
-
-          </div>
-          <div className='background-preview'>
-            <p>Animated background</p>
-            {/* background go here*/}
-
-          </div>
-          <button id='pause'>Pause</button>
+        <div className="background-options">
+          <button className="bg-option">Choice 1</button>
+          <button className="bg-option">Choice 2</button>
+          <button className="bg-option">Choice 3</button>
+          <button className="bg-option">Choice 4</button>
         </div>
-      </div>
+        <div className="time-setters">
+          <TimeSetter label="Set Time" />
+          <TimeSetter label="Set Break" />
+        </div>
+      </aside>
+
+      {/* right side */}
+      <main className="content-area">
+        <PresetSelector />
+        <div className="timer-box">
+          <TimeRemainingTimer />
+        </div>
+        <BackgroundPreview />
+      </main>
+
+      <Footer />
+    </div>
   );
 }
 

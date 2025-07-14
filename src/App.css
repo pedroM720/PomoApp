@@ -1,38 +1,113 @@
-.App {
+body {
+  margin: 0;
+  font-family: 'Public Pixel', sans-serif;
+  background-color: #bda190;
+  color: #333;
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 33%;
+  background: #fceada;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+}
+
+.box {
+  background: #a7be92;
+  border-radius: 12px;
+  padding: 1rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.background-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  font-family: "Public Pixel", sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.bg-option {
+  background: #967969;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
+  cursor: pointer;
+  font-size: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.time-setters {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 2rem;
+  font-size: 33px;
+}
+
+.time-setter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 12px;
+  width: 80%;
+}
+
+.time-setter-controls {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.content-area {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 1.5rem;
+}
+
+.preset-select{
+  align-self: flex-end;
+  display:flex;
+  gap:2rem;
+  margin-bottom: 0.5rem;
+  font-size: 20px;
+}
+
+
+.timer-box {
+  background: #99af86;
+  border-radius: 6px;
+  padding: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.time-remaining {
+  display: flex;
+  flex-direction: column;
+  align-items:center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-align:center;
+  height: 100%;
+  font-size: 18px;
+}
+.bg-preview{
+  font-size: 18px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 0.2rem 0;
+  background: #ffffff;
 }
