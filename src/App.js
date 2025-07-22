@@ -7,10 +7,40 @@ import BackgroundChooser from './components/BackgroundChooser';
 import BackgroundPreview from './components/BackgroundPreview';
 import PresetSelector from './components/PresetSelector';
 import TimeSetter from './components/TimeSetter';
+import Timer from './components/Timer';
+import React, { useState, useEffect } from 'react'
 
 
 
 function App() {
+  const [workTime, setWorkTime] = useState(0);
+  const [breakTime, setBreakTime] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
+
+  const step = 5 * 60; // 5 minutes
+  const max_time = 100 * 60 
+
+  const increaseWork = () => setWorkTime(prev => Math.min(prev + step, max_time));
+  const decreaseWork = () => setWorkTime(prev => Math.max(prev - step, 0));
+  const increaseBreak = () => setBreakTime(prev => Math.min(prev + step, max_time));
+  const decreaseBreak = () => setBreakTime(prev => Math.max(prev - step, 0));
+  
+  useEffect(() => {
+    if (!isRunning) return;
+    const interval = setInterval(() => {
+      setCurrentTime(prevTime => {
+        if (prevTime <= 1) {
+          clearInterval(interval);
+          setIsRunning(false);
+          return 0;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [isRunning])
+
   return (
     <div className="app-container">
       {/* left side */}
@@ -26,8 +56,16 @@ function App() {
           <button className="bg-option">Choice 4</button>
         </div>
         <div className="time-setters">
-          <TimeSetter label="Set Time" />
-          <TimeSetter label="Set Break" />
+          <TimeSetter label="Set Time"
+          time={workTime}
+          onIncrease={increaseWork}
+          onDecrease={decreaseWork}
+          />
+          <TimeSetter label="Set Break" 
+          time={breakTime}
+          onIncrease={increaseBreak}
+          onDecrease={decreaseBreak}
+          />
         </div>
       </aside>
 
@@ -35,7 +73,12 @@ function App() {
       <main className="content-area">
         <PresetSelector />
         <div className="timer-box">
-          <TimeRemainingTimer />
+          <Timer workTime={workTime}
+           time={currentTime}
+          isRunning={isRunning}
+          setIsRunning={setIsRunning}
+          setCurrentTime={setCurrentTime}
+          />
         </div>
         <BackgroundPreview />
       </main>

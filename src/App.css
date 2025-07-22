@@ -97,10 +97,19 @@ body {
   justify-content: center;
   text-align:center;
   height: 100%;
-  font-size: 18px;
+  font-size: 13px;
 }
 .bg-preview{
   font-size: 18px;
+}
+
+.button{
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  border: 0;
+  display: inline-block;
+  width: 80px;
+
 }
 
 .footer {
