@@ -1,4 +1,7 @@
 import React from 'react';
+import plusIcon from '../assets/pomodoro_plusbutton.png';
+import minusIcon from '../assets/pomodoro_minusbutton.png';
+
 
 function TimeSetter({ label, time, onIncrease, onDecrease }) {
   const minutes = Math.floor(time / 60);
@@ -9,9 +12,9 @@ function TimeSetter({ label, time, onIncrease, onDecrease }) {
     <section className="time-setter">
       <h3>{label}</h3>
       <div className="time-setter-controls">
-        <button onClick={onDecrease}>−</button>
+        <button className='time-setter-button' onClick={onDecrease}>  <img src={minusIcon} alt="Decrease" style={{ width: '34px', height: '34px' }} /> </button>
         <span>{formatted}</span>
-        <button onClick={onIncrease}>+</button>
+        <button className='time-setter-button' onClick={onIncrease}> <img src={plusIcon} alt="Increase" style={{ width: '34px', height: '34px' }} /></button>
       </div>
     </section>
   );

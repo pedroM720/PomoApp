@@ -4,15 +4,19 @@ import PlayButton from './PlayButton';
 import PauseButton from './PauseButton';
 
 
-function Timer({time, isRunning, setIsRunning, workTime, setCurrentTime}) {
+function Timer({ time, isRunning, setIsRunning, workTime, breakTime, setCurrentTime, isBreakPhase }) {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
     const formatted = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-    const percentage = workTime > 0 ? (time / workTime) * 100 : 0;
+    const totalTime = isBreakPhase ? breakTime : workTime;
+    const percentage = totalTime > 0 ? (time / totalTime) * 100 : 0;
+
 
 
   const handlePlay = () => {
-    setCurrentTime(workTime);
+    if (time === 0) {
+        setCurrentTime(workTime);
+    }
     setIsRunning(true);
   };
 
@@ -25,7 +29,7 @@ function Timer({time, isRunning, setIsRunning, workTime, setCurrentTime}) {
             <CircularProgressbar value={percentage} text={formatted} styles={buildStyles({
                 textSize: '18px',
                 textColor: '#fff',
-                pathColor: '#008000',
+                pathColor: isBreakPhase ? '#ff4d4d': '#008000',
                 
             })}
             />

@@ -1,11 +1,11 @@
 import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
+
 import TimeRemainingTimer from './components/TimeRemainingTimer';
 import ContentArea from './components/ContentArea';
 import BackgroundChooser from './components/BackgroundChooser';
 import BackgroundPreview from './components/BackgroundPreview';
-import PresetSelector from './components/PresetSelector';
 import TimeSetter from './components/TimeSetter';
 import Timer from './components/Timer';
 import React, { useState, useEffect } from 'react'
@@ -17,6 +17,7 @@ function App() {
   const [breakTime, setBreakTime] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
+  const [isBreakPhase, setIsBreakPhase] = useState(false);
 
   const step = 5 * 60; // 5 minutes
   const max_time = 100 * 60 
@@ -26,20 +27,37 @@ function App() {
   const increaseBreak = () => setBreakTime(prev => Math.min(prev + step, max_time));
   const decreaseBreak = () => setBreakTime(prev => Math.max(prev - step, 0));
   
+
+  // countdown logic
   useEffect(() => {
     if (!isRunning) return;
+
     const interval = setInterval(() => {
       setCurrentTime(prevTime => {
         if (prevTime <= 1) {
           clearInterval(interval);
+
+        if (!isBreakPhase && breakTime > 0) {
+          setIsBreakPhase(true);
+          return breakTime;
+        } else {
           setIsRunning(false);
-          return 0;
+          setIsBreakPhase(false);
+          return workTime;
         }
-        return prevTime - 1;
-      });
+      } 
+      return prevTime - 1;
+    });
     }, 1000);
     return () => clearInterval(interval);
-  }, [isRunning])
+  }, [isRunning, isBreakPhase, breakTime]);
+
+  // break time 
+  useEffect(() => {
+    if(!isRunning) {
+      setCurrentTime(isBreakPhase ? breakTime: workTime);
+    }
+  }, [workTime, breakTime, isBreakPhase, isRunning]);
 
   return (
     <div className="app-container">
@@ -71,7 +89,6 @@ function App() {
 
       {/* right side */}
       <main className="content-area">
-        <PresetSelector />
         <div className="timer-box">
           <Timer workTime={workTime}
            time={currentTime}
