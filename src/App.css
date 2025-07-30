@@ -142,16 +142,37 @@ body {
 }
 
 .time-setter-button:hover {
-  background-color: rgba(0, 0, 0, 0.15);
-  border-radius: 50%;
-  transition: background-color 0.2s ease;
-  transform: scale(1.1);
+  transition: background-color 0.2s ease,  transform 0.2s ease, box-shadow 0.2s ease;
+  transform: scale(1.2);
+  box-shadow: inset 0 0 8px rgb(158, 130, 98);
+  border-radius: 20%;
 }
 
-button:hover {
-  background-color: rgba(0, 0, 0, 0.05); 
-  border-radius: 10px;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-  transform: scale(1);
+.pixel-button {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  background-color: #967969;
+  color: #1a1a1a;
+  border: 4px solid #1a1a1a;
+  padding: 12px 20px;
+  margin: 10px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #1a1a1a;
+  transition: transform 0.1s, box-shadow 0.1s, background-color 0.2s;
+  text-transform: uppercase;
 }
+
+.pixel-button:hover {
+  background-color: #886f61;
+  box-shadow: 2px 2px 0 #1a1a1a;
+  transform: translate(2px, 2px);
+}
+
+.pixel-button:active {
+  background-color: #7f9252;
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+
 

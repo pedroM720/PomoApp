@@ -68,10 +68,10 @@ function App() {
           <h2>Choose Background:</h2>
         </div>
         <div className="background-options">
-          <button className="bg-option">Choice 1</button>
-          <button className="bg-option">Choice 2</button>
-          <button className="bg-option">Choice 3</button>
-          <button className="bg-option">Choice 4</button>
+          <button className="pixel-button">Choice 1</button>
+          <button className="pixel-button">Choice 2</button>
+          <button className="pixel-button">Choice 3</button>
+          <button className="pixel-button">Choice 4</button>
         </div>
         <div className="time-setters">
           <TimeSetter label="Set Time"
