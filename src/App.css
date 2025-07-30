@@ -140,3 +140,18 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+.time-setter-button:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  transform: scale(1.1);
+}
+
+button:hover {
+  background-color: rgba(0, 0, 0, 0.05); 
+  border-radius: 10px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  transform: scale(1);
+}
+

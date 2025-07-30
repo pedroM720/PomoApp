@@ -19,7 +19,7 @@ function App() {
   const [isRunning, setIsRunning] = useState(false);
   const [isBreakPhase, setIsBreakPhase] = useState(false);
 
-  const step = 5 * 60; // 5 minutes
+  const step = 5 * 10; // 5 minutes
   const max_time = 100 * 60 
 
   const increaseWork = () => setWorkTime(prev => Math.min(prev + step, max_time));
@@ -49,15 +49,15 @@ function App() {
       return prevTime - 1;
     });
     }, 1000);
+
     return () => clearInterval(interval);
   }, [isRunning, isBreakPhase, breakTime]);
 
+
   // break time 
   useEffect(() => {
-    if(!isRunning) {
       setCurrentTime(isBreakPhase ? breakTime: workTime);
-    }
-  }, [workTime, breakTime, isBreakPhase, isRunning]);
+  }, [workTime, breakTime, isBreakPhase]);
 
   return (
     <div className="app-container">
@@ -91,10 +91,12 @@ function App() {
       <main className="content-area">
         <div className="timer-box">
           <Timer workTime={workTime}
-           time={currentTime}
+          time={currentTime}
           isRunning={isRunning}
           setIsRunning={setIsRunning}
           setCurrentTime={setCurrentTime}
+          breakTime={breakTime}
+          isBreakPhase={isBreakPhase}
           />
         </div>
         <BackgroundPreview />
